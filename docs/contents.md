@@ -8,7 +8,7 @@ With these guidelines, the API Strategy Working Group aims to establish a set of
 
 ## Drafts (upcoming)
 <span class="draftPopup">Note: this is a draft!</span>
-**[Event Data Specification](drafts/event-data-specs/)** - Specification of Event Metadata
+**[Event Data Specification](event-data-specs-draft/)** - Specification of Event Metadata
 {: .draft }
 
 ## How to read the guidelines

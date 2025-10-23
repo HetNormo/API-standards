@@ -16,7 +16,10 @@ A valuable source is also: https://docs.github.com/en/pages/quickstart (see sect
 
 ### Drafts
 
-For drafts, create a folder for the publication in `source/drafts/`, modify the file `jekyll-gh-pages.yml'from this folder to a destination publication-draft. Make sure the first source contains the annotation `layout: doc-draft`. Move/copy the files when publishing to the original folder. 
+For drafts, create a folder for the publication in `source/drafts/`, modify the file `jekyll-gh-pages.yml` from this folder to a destination publication-draft. Make sure the first source contains the annotation `layout: doc-draft` and edit the `contents.md`
+to add the file to the index.
+
+Move/copy the files to the original folder upon publication and update the sidebar file in `_includes`. 
 
 ### Updating
 
@@ -34,11 +37,13 @@ Releases are done by merging the develop branch into the main branch, tagging it
 
 How comments can be made and are handled is described on the public pages. See the link on the generated site.
 
-## Style changes
+## Style changes (or local testing)
 
-To set up your environment to develop the theme, run `bundle install`. You might also need to `gem install github-pages && gem install jekyll-seo-tag`.
+To set up your environment to develop the theme, run `bundle install` in your `docs` folder. You might also need to `gem install github-pages && gem install jekyll-seo-tag` and have `ruby` and such installed.
 
-Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
+Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` (inside `docs` folder) and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
+
+Tip: Create any `index.md` via `cat *.md > path/to/index.md` (linux) or `type *.md > path/to/index.md`.
 
 The base style sheet of the original theme is excluded from use for this repository (by means of not including it).
 
