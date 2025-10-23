@@ -16,7 +16,7 @@ A valuable source is also: https://docs.github.com/en/pages/quickstart (see sect
 
 ### Drafts
 
-For drafts, create a folder for the publication in `source/drafts/`, modify the file `jekyll-gh-pages.yml'from this folder to a destination publication-draft. Make sure the `index.md` contains the annotation `layout: doc-draft`. Move/copy the files when publishing to the original folder. 
+For drafts, create a folder for the publication in `source/drafts/`, modify the file `jekyll-gh-pages.yml'from this folder to a destination publication-draft. Make sure the first source contains the annotation `layout: doc-draft`. Move/copy the files when publishing to the original folder. 
 
 ### Updating
 
