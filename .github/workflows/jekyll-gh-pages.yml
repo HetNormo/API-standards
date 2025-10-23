@@ -49,7 +49,7 @@ jobs:
         uses: nerdoza/action-md-concat@v1
         with:
           srcDir: source/drafts/event-data-specs
-          destFile: docs/drafts/event-data-specs/index.md
+          destFile: docs/event-data-specs-draft/index.md
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
