@@ -23,6 +23,8 @@ The process that providers publish APIs in accordance with OAS3 leads to predict
 
 #### Exceptions
 
+None.
+
 
 </details>
 
