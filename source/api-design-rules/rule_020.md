@@ -20,7 +20,7 @@ The HTTP headers are standardized according to the HTTP specification: [HTTP/1.1
 The set of technical HTTP headers to be supported prescribed in the HTTP specification meets the requirements of the energy sector. The following technical parameter extensions (indicated with prefix ‘X’ according to ASNO) are added to this set:
 + X-Object-ID (response): alternative for header Location if no complete URL is to be returned in the response. X-Object-ID contains the identification number of the created resource; 
 + X-Correlation-ID (request & response): contains a unique identifier that can be used to link different messages in a transaction;
-+ X-Request-ID (request): contains the unique identifier of the request and/or response;
++ X-Request-ID (request & response): contains the unique identifier of the request and/or response;
 + X-Sender-ID (request): the EAN13 of the market party calling the REST API;
 + X-Role (request): the role of the market party indicated by the X-Sender-ID;
 + X-Principal-Token (request): contains the unique identifier of the calling party (person or system) in the context of a request. How the content of the field should be interpreted exactly depends on the context; it could be an OAuth access token, for example.
