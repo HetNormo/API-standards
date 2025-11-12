@@ -50,12 +50,9 @@ A GET request without an explicit resource ID serves as a standard search query.
 
 The operation **may** result in the following response codes:
 
-- **200 – Success**: The response payload contains a list (with or without pagination) of all resources matching the search filter. Each resource in this list contains only the attributes the requester is authorised to view (see also ID 25). If no results are found, an empty list **should** be returned.
-
+- **200 – Success**: The response payload contains a list (with or without pagination) of all resources matching the search filter. Each resource in this list contains only the attributes the requester is authorised to view (see also [ID 25](https://lemval.github.io/API-specifications/api-design-rules/#id-25)). If no results are found, an empty list **should** be returned.
   It is permitted to limit the search results to only the information necessary for the requester to determine a subset of results, which can then be fully retrieved using GET (with ID).
-
 - **409 – Conflict**: The current state of the collection prevents execution of the search query, for example, because it is locked.
-
 - **422 – Unprocessable Content**: The semantic check in this context may indicate that the request cannot be executed because it would result in an excessively large result set (e.g., querying a large collection without an explicit filter or with unrealistic filter parameters).
 
 In all cases, a GET request must never contain a request body!
@@ -86,11 +83,12 @@ Additionally, the requester **may** include an **If-Match** header containing th
 
 The operation **may** result in the following response codes:
 
-- **200 - Ok**: The replacement was successful and the response body contains a *status record* providing useful metadata pertaining to the operation. *This is an exception* (see "Exception" below). The response **may** optionally include an **ETag** header containing the (new) ETag key of the modified resource.
+- **200 - Ok**: The replacement was successful and the response body *as an exception* contains a *status record* providing useful metadata pertaining to the operation. It does **not** return the resource itself.  (see "Exception" below). The response **may** optionally include an **ETag** header containing the (new) ETag key of the modified resource.
 - **202 – Accepted**: The request has been received and successfully validated but has not yet been executed. This can happen in case of asynchronous processing. If the requester wants to ensure that the changes have been applied, they must perform a GET request at a later time to check the state.
 - **204 – No Content**: The replacement was successful, and no response is returned, as the updated resource state can be retrieved via a GET request (see justification under GET). The response **may** optionally include an **ETag** header containing the (new) ETag key of the modified resource.
 - **404 – Not Found**: The provided ID does not correspond to a valid resource.
-- **409 – Conflict**: The resource exists, but its current state prevents updates, for example, because it is locked or because the provided **ETag** key does not match (conflicting update).
+- **409 – Conflict**: The resource exists, but its current state prevents updates, for example, because it is locked or because a required (parent) resource is missing.
+- **412 - Precondition Failed**: The provided **ETag** value does not match the current state of the resource (stale state).
 
 A PUT request must never contain a response body (except for responses related to error messages)!
 
@@ -151,16 +149,17 @@ The operation **may** result in the following response codes:
 A more 'REST-compliant' alternative of a complex search is also possible. This would require three separate operations:
 
 1. Create a "*search resource*" using *POST* and filters (effectively creating a "view" on the data). This returns the *search-resource* through the *Location* header;
-2. Perform one or more *GET* operations on the search-resource returned by step 1 to retrieve the data;
+2. Perform one or more *GET* operations on the search-resource returned by step 1 to retrieve the data. These GET operations could implement paging according to the [paging rule](https://lemval.github.io/API-specifications/api-design-rules/#id-28).
 3. Delete the search-resource using *DELETE* on it's endpoint.
 
 This implementation, using persistent filters, can be advantageous when the filters are complex, expensive to create and/or are reusable over a longer period of time.
+Like the default complex search implementation, this alternative requires a **/search** endpoint.
 
 ### Justification
 
 #### POST as a Create Operation
 
-Use the POST operation primarily for creating a new resource. As part of the principle of separation of concerns, this is its only responsibility. Retrieving the updated resource state does **not** fall under the responsibility of the POST operation. For this reason, POST does not return a response body, except for status- or error messages. However, it does return a link to the newly created resource, which can then be retrieved using GET.
+Use the POST operation primarily for creating a new resource. As part of the principle of separation of concerns, this is its only responsibility. Retrieving the updated resource state does **not** fall under the responsibility of the POST operation. For this reason, POST does not return a response body, except for status- or error messages. However, it does return a link to the newly created resource (through the **Location** header parameter), which can then be retrieved using GET.
 
 Another reason why POST does not return a resource in its response is related to caching. A POST operation is **not** idempotent, and its results are not cacheable, unlike GET.
 
@@ -202,7 +201,8 @@ The operation **may** result in the following response codes:
 - **200 – OK**: The resource(s) have been successfully deleted, and a status overview is available in the response payload. *This is an exception* (see "Exception" below).
 - **202 – Accepted**: The request has been received and successfully validated but has not yet been executed. This can occur in cases of asynchronous processing. If the requester wants to ensure that the resource has indeed been deleted, they must perform a GET request at a later time.
 - **204 – No Content**: The resource(s) have been successfully deleted.
-- **409 – Conflict**: The operation cannot be executed because the current state does not allow it (e.g., due to an ETag mismatch or because the collection or resource is locked).
+- **409 – Conflict**: The operation cannot be executed because the current state does not allow it (e.g. because the collection or resource is locked or child resources have to be deleted first).
+- **412 - Precondition Failed**: The provided **ETag** value does not match the current state of the resource (stale state).
 
 ### Justification
 
@@ -249,7 +249,8 @@ The operation **may** result in the following response codes:
 - **202 – Accepted**: The request has been received and successfully validated but has not yet been executed. This can happen in cases of asynchronous processing. If the requester wants to ensure that the changes have been applied, a later GET request must be performed to check the state.
 - **204 – No Content**: The update was successful, and no response is returned since it can be retrieved via a GET operation (see justification under GET).
 - **404 – Not Found**: The specified ID does not correspond to a valid resource.
-- **409 – Conflict**: The resource exists, but its current state makes it impossible to update, e.g., because it is locked or the ETag key differs (conflicting update).
+- **409 – Conflict**: The resource exists, but its current state makes it impossible to update, e.g., because it is locked.
+- **412 - Precondition Failed**: The provided **ETag** value does not match the current state of the resource (stale state).
 
 A PATCH operation **should not** contain a response body (except for error messages that are part of failure responses)!
 
