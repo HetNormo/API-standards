@@ -4,7 +4,7 @@
 
 A core principle of RESTful APIs is the use of standard HTTP operations: GET, PUT, POST, PATCH and DELETE (and to a lesser extent, HEAD and OPTIONS). The CONNECT and TRACE operations are rarely, if ever, used within RESTful APIs and are therefore not considered here.
 
-This appendix provides guidelines for using POST as a complex search operation (POST ...//search). An Internet Draft now exists for implementing a new HTTP operation, QUERY. It is expected that, over time, this will replace POST as the method for complex searches. However, since the specification is still under development and there is currently no support for this new operation within existing RESTful API specifications, it will be disregarded for now.
+This appendix provides guidelines for using POST as a complex search operation (POST …//search). An Internet Draft now exists for implementing a new HTTP operation, QUERY. It is expected that, over time, this will replace POST as the method for complex searches. However, since the specification is still under development and there is currently no support for this new operation within existing RESTful API specifications, it will be disregarded for now.
 
 The HTTP standard allows for a considerable amount of flexibility in the functionality and use of operations. Since the sector aims for consistent behaviour across RESTful APIs, it is necessary to further refine how these operations are used. This appendix provides additional guidelines and serves as further clarification of guideline 08.
 
@@ -12,12 +12,12 @@ Each operation is described in terms of application and restrictions, including 
 
 Additionally, each operation **should** generate several common error codes:
 
-- **400 - Bad Request**: The request contains syntactic errors that make execution impossible.
-- **401 - Unauthorized**: The requester must authenticate before calling the operation.
-- **403 - Forbidden**: The requester has no rights to perform the given operation or may not execute it on the specified resource.
-- **422 - Unprocessable Content**: The request is syntactically correct but contains semantic errors/conflicts preventing execution (only applicable for those operations that receive parameters and/or payloads that require semantic validation).
-- **500 - Internal Server Error**: The called application encounters a problem that makes it impossible to execute the requested operation.
-- **503 - Service Unavailable**: The called application is currently unavailable.
+- **400 – Bad Request**: The request contains syntactic errors that make execution impossible.
+- **401 – Unauthorized**: The requester must authenticate before calling the operation.
+- **403 – Forbidden**: The requester has no rights to perform the given operation or may not execute it on the specified resource.
+- **422 – Unprocessable Content**: The request is syntactically correct but contains semantic errors/conflicts preventing execution (only applicable for those operations that receive parameters and/or payloads that require semantic validation).
+- **500 – Internal Server Error**: The called application encounters a problem that makes it impossible to execute the requested operation.
+- **503 – Service Unavailable**: The called application is currently unavailable.
 
 ### Responses to Operations
 
@@ -26,7 +26,7 @@ When designing RESTful APIs, two general approaches can be observed for implemen
 1. Mutation operations (POST, PUT, PATCH) return the (new) state of the modified/created resource.
 2. Mutation operations (POST, PUT, PATCH) return only a status.
 
-Both approaches are allowed from a REST 'best practices' perspective. However, the downside of option (1) is that it introduces multiple 'backdoors' for retrieving a resource. Particularly in large, complex data structures and/or intricate authorisation models, it is not always straightforward to determine exactly what should be returned. Ideally, these algorithms should be implemented in a single location.
+Both approaches are allowed from a REST ‘best practices’ perspective. However, the downside of option (1) is that it introduces multiple ‘backdoors’ for retrieving a resource. Particularly in large, complex data structures and/or intricate authorisation models, it is not always straightforward to determine exactly what should be returned. Ideally, these algorithms should be implemented in a single location.
 
 Additionally, in the case of POST and PUT, the requester already provides most of the resource state in the request, making the response largely redundant. This results in unnecessary overhead, especially in complex data models. Finally, the response from POST, PUT, and PATCH is not inherently cacheable, unlike GET.
 
@@ -42,9 +42,9 @@ A GET request with a resource ID is the designated (and only) method for retriev
 
 The operation **may** result in the following response codes:
 
-- **200 - Success**: The response payload contains only the attributes of the requested resource that the requester has permission to view (see also ID 25). Additionally, the response **may** include an ETag HTTP header with a unique identifier of the resource, which can be used for optimising resource caching and detecting update conflicts. See guideline XXX for details.
-- **404 - Not Found**: The provided ID does not correspond to a valid resource.
-- **409 - Conflict**: The resource exists, but its current state prevents retrieval, for example, because it is locked.
+- **200 – Success**: The response payload contains only the attributes of the requested resource that the requester has permission to view (see also ID 25). Additionally, the response **may** include an ETag HTTP header with a unique identifier of the resource, which can be used for optimising resource caching and detecting update conflicts. See guideline XXX for details.
+- **404 – Not Found**: The provided ID does not correspond to a valid resource.
+- **409 – Conflict**: The resource exists, but its current state prevents retrieval, for example, because it is locked.
 
 A GET request without an explicit resource ID serves as a standard search query. A maximum of *five* query parameters may be specified for filtering. If more parameters are needed, if the search functionality is complex, or if privacy concerns arise, POST should be used instead (see further details). Depending on the number and size of responses, pagination may be implemented to divide the results into manageable blocks. See guideline ID 28 for details.
 
@@ -77,7 +77,7 @@ When using GET as a search query, special attention should be given to the combi
 
 ### Explanation
 
-A PUT request is always executed on a unique resource (i.e., a URL that determines the unique identity of the resource). The result is that the server replaces the existing resource (if present) with a new version, where the state is determined by the received attributes while maintaining the resource its identity. This means that some attributes may be removed (if they are no longer included in the new state), while new attributes may be added (if they were not present in the previous state).
+A PUT request is always executed on a unique resource (i.e., a URL that determines the unique identity of the resource). The result is that the server replaces the existing resource (if present) with a new version, where the state is determined by the received attributes while maintaining the resource’s identity. This means that some attributes may be removed (if they are no longer included in the new state), while new attributes may be added (if they were not present in the previous state).
 
 Additionally, the requester **may** include an **If-Match** header containing the ETag key known to them for the respective resource. This allows the server to validate the resource state before executing the update (see [RFC-7232](https://datatracker.ietf.org/doc/html/rfc7232) for details).
 
@@ -136,13 +136,13 @@ The example illustrates a complex search with three different filter sets. The *
 
 The operation **may** result in the following response codes:
 
-- **200 - Success**: The response payload contains a list (possibly paginated) of all resources found based on the search filter. Each resource in this list contains only the attributes that the requester is authorised to view (see also ID 25). If no results are found, an empty list should be returned.
+- **200 – Success**: The response payload contains a list (possibly paginated) of all resources found based on the search filter. Each resource in this list contains only the attributes that the requester is authorised to view (see also ID 25). If no results are found, an empty list should be returned.
 
   It is permitted to limit search results to only the necessary information for the requester to determine a subset of results, which can then be fully retrieved using GET (with ID).
 
-- **409 - Conflict**: The current state of the collection prevents the execution of the search query, for example, because it is locked.
+- **409 – Conflict**: The current state of the collection prevents the execution of the search query, for example, because it is locked.
 
-- **422 - Unprocessable Content**: The semantic check in this context may indicate that the request cannot be executed because it would result in an excessively large result set (e.g., querying a large collection without an explicit filter or using unrealistic filter parameters).
+- **422 – Unprocessable Content**: The semantic check in this context may indicate that the request cannot be executed because it would result in an excessively large result set (e.g., querying a large collection without an explicit filter or using unrealistic filter parameters).
 
 ##### Alternative solution
 
@@ -177,7 +177,7 @@ In some cases, both parties may have a resource key. In such situations, the par
 
 **Possible Scenarios:**
 
-1. The requester sends their key as the master resource ID to the server. When creating the resource on the server, this key is replaced by a new server-generated key, and the requester its key is moved to another predefined attribute.
+1. The requester sends their key as the master resource ID to the server. When creating the resource on the server, this key is replaced by a new server-generated key, and the requester’s key is moved to another predefined attribute.
 2. The requester sends their key as an alternative resource ID to the server. When creating the resource, nothing changes; only a new server-generated master resource ID is added.
 3. The requester sends their key as the master resource ID to the server. If the key is valid as a master resource ID, the server adopts it. Both parties now have the same key. If the key is invalid, the server returns a **409 – Conflict** error.
 4. The requester sends their key as the master resource ID to the server. The server ignores this key and replaces it with its own key when creating the resource. The requester detects this change (e.g., by inspecting the **Location** header) and updates their version with the new key.
@@ -210,7 +210,7 @@ The DELETE operation is solely intended for removing one or more resources. With
 
 ### Exception
 
-In **special cases**, a DELETE operation **may** return a **200 - OK** response along with a response payload containing details about the deletion process. The HTTP specification allows DELETE to include a **status response**.
+In **special cases**, a DELETE operation **may** return a **200 – OK** response along with a response payload containing details about the deletion process. The HTTP specification allows DELETE to include a **status response**.
 
 However, this **does not** mean that the full resource state (which no longer exists) is included in the response. Instead, it is primarily used for returning archive links or similar references in cases where the resource was not physically deleted but was instead archived.
 
@@ -224,24 +224,22 @@ For DELETE operations on a collection, it may be useful to include information i
 
 A PATCH operation is always performed on a unique resource (i.e., a URL that determines the unique identity of the resource). With a PATCH operation, it is possible to selectively update parts of a resource. Within the HTTP standard, PATCH is a special case because it is not part of the core HTTP specification but is instead described in several separate RFCs (thus, it should be considered an extension to HTTP). There are also multiple forms of PATCH, each with its own challenges. [This web page](https://williamdurand.fr/2014/02/14/please-dont-patch-like-that/) provides a useful overview and also refers to an alternative implementation ([JSON Merge Patch](https://datatracker.ietf.org/doc/html/rfc7396)).
 
-The original implementation of PATCH ([JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902)) uses a set of 'update rules' that allow the requester to specify exactly what should be done (delete, add, replace, copy). This is a relatively complex mechanism but has the advantage of explicitly defining the intended changes.
-
-**Example:**
+The original implementation of PATCH ([JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902)) uses a set of “update rules” that allow the requester to specify exactly what should be done (delete, add, replace, copy). This is a relatively complex mechanism but has the advantage of explicitly defining the intended changes. Example:
 ```json
 [
-    { "path": "/a/b/c", "op": "test", "value": "foo" },
-    { "path": "/a/b/c", "op": "remove" },
-    { "path": "/a/b/c", "op": "add", "value": ["foo", "bar"] },
-    { "path": "/a/b/c", "op": "replace", "value": 42 },
-    { "path": "/a/b/c", "op": "move", "to": "/a/b/d" },
-    { "path": "/a/b/d", "op": "copy", "to": "/a/b/e" }
+{ "path": "/a/b/c", "op": "test", "value": "foo" },
+{ "path": "/a/b/c", "op": "remove" },
+{ "path": "/a/b/c", "op": "add", "value": ["foo", "bar"] },
+{ "path": "/a/b/c", "op": "replace", "value": 42 },
+{ "path": "/a/b/c", "op": "move", "to": "/a/b/d" },
+{ "path": "/a/b/d", "op": "copy", "to": "/a/b/e" }
 ]
 ```
 This model is fully described in [RFC 6902](https://datatracker.ietf.org/doc/html/rfc6902) and is allowed as an implementation, provided it is explicitly mentioned in the service design documentation, as it requires considerable implementation effort from both the client and the server. The advantage, however, is that it makes the intended changes very explicit.
 
 The content type for this PATCH variant **should** be `application/json-patch+json`.
 
-As a simpler alternative, [JSON Merge Patch](https://datatracker.ietf.org/doc/html/rfc7396) can be used. The content type for this PATCH variant **should** be `application/merge-patch+json`. The advantage of this second variant is that it is easier to implement, as only the modified content needs to be transmitted. The disadvantages include the lack of explicit expressiveness and poor support for arrays (to modify an array, a complete new version of the array must be provided). Because the request payload in this case must support many variations (all permutations possible within the data model), an explicit schema is generally not used for the request, but rather a JSON 'any' schema. The server dynamically validates the received data and applies the identified structures to the existing resource state where possible.
+As a simpler alternative, [JSON Merge Patch](https://datatracker.ietf.org/doc/html/rfc7396) can be used. The content type for this PATCH variant **should** be `application/merge-patch+json`. The advantage of this second variant is that it is easier to implement, as only the modified content needs to be transmitted. The disadvantages include the lack of explicit expressiveness and poor support for arrays (to modify an array, a complete new version of the array must be provided). Because the request payload in this case must support many variations (all permutations possible within the data model), an explicit schema is generally not used for the request, but rather a JSON “any” schema. The server dynamically validates the received data and applies the identified structures to the existing resource state where possible.
 
 Additionally, along with the resource identification, the client **may** also provide an **If-Match** header containing the ETag key known to the client for the given resource. This allows the server to validate the state of the resource before executing the update operation (see guideline XXX for details).
 
@@ -278,9 +276,9 @@ A HEAD operation is always performed on a unique resource (i.e., a URL that dete
 
 The operation **may** result in the following response codes:
 
-- **204 - No Content**: The standard success response for HEAD, as no response body is returned by definition.
-- **404 - Not Found**: The specified ID does not correspond to a valid resource.
-- **501 - Not Implemented**: The server does not support the HEAD operation.
+- **204 – No Content**: The standard success response for HEAD, as no response body is returned by definition.
+- **404 – Not Found**: The specified ID does not correspond to a valid resource.
+- **501 – Not Implemented**: The server does not support the HEAD operation.
 
 A HEAD operation **should never** contain a response body (except for error messages in failure responses)!
 
@@ -300,12 +298,12 @@ None.
 
 The purpose of the OPTIONS operation is to request metadata for a given endpoint (a resource). The response consists of a set of HTTP header parameters that indicate, among other things, which operations are allowed for that endpoint, whether and for how long responses may be cached, which security requirements apply, which content types are accepted, etc. Here is an example of an OPTIONS response:
 
-```
+```HTTP
 HTTP/1.1 204 No Content
 Allow: OPTIONS, GET, HEAD, POST
 Cache-Control: max-age=604800
 Date: Thu, 13 Oct 2016 11:45:00 GMT
-Server: EOS (lax004/2813)
+Server: EOS (lax004/2813
 ```
 
 The server **may** send the following header parameters in an OPTIONS response:
@@ -321,9 +319,9 @@ The server **may** also send other header parameters if they are considered rele
 
 The operation **may** result in the following response codes:
 
-- **204 - No Content**: The standard success response for OPTIONS, as a response body is typically not returned.
-- **404 - Not Found**: If the URL contains a resource ID and the specified ID does not correspond to a valid resource.
-- **501 - Not Implemented**: The server does not support the OPTIONS operation.
+- **204 – No Content**: The standard success response for OPTIONS, as a response body is typically not returned.
+- **404 – Not Found**: If the URL contains a resource ID and the specified ID does not correspond to a valid resource.
+- **501 – Not Implemented**: The server does not support the OPTIONS operation.
 
 An OPTIONS operation **should never** contain a response body (except for error messages in failure responses)!
 
