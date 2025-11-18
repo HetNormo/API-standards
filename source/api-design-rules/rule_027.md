@@ -4,6 +4,7 @@
 | :------- | :----------------------------------------------------------- |
 | Strategy | If a resource has to be retrieved using a foreign key (i.e. a key that is not the primary key of the resource), use GET on the *resource collection* and provide the key as a query parameter. |
 
+
 <details><summary>
 
 Open section for explanation, rationale and exception conditions 
@@ -35,6 +36,4 @@ The above example leads to a RESTful API that is cluttered with endpoints that d
 #### Exceptions
 
 None.
-
-</details>
 
