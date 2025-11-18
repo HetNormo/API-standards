@@ -75,7 +75,6 @@ Resulting in:
 
 ![Resulting Swagger Info](../attachments/swagger-info.png)
 
-
 #### Exceptions
 
 None.

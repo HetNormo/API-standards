@@ -20,6 +20,8 @@ The use of the '_expand' parameter for expanding linked resources is laid down i
 
 #### Exceptions
 
+None.
+
 
 </details>
 

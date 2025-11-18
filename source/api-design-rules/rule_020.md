@@ -27,6 +27,8 @@ The set of technical HTTP headers to be supported prescribed in the HTTP specifi
 
 #### Exceptions
 
+None.
+
 
 </details>
 
