@@ -35,7 +35,7 @@ Opt indicates that the error code can optionally be used in special cases:
 + A 202 status code can be returned if it concerns an asynchronous handling (PUT, POST, PATCH or DELETE);
 + A 200 status code must be returned for a DELETE operation if there is a need for a response payload with information about the deleted resource.
 
-See also [appendix E](../attachments/Appendix-E-Use-of-HTTP-operations-for-RESTful-APIs.html) for a detailed explanation per operation, including the use of response codes.
+See also [appendix](../attachments/Use-of-HTTP-operations-for-RESTful-APIs.html) for a detailed explanation per operation, including the use of response codes.
 
 #### Rationale
 
@@ -49,7 +49,6 @@ Specifying a minimum set of HTTP status codes that must be used for a REST opera
 None.
 
 </details>
-
 
 
 

@@ -20,6 +20,6 @@ Using a standardised parameter for sorting increases comprehensibility.
 
 #### Exceptions
 
-n.a.
+None.
 
 </details>

@@ -25,6 +25,6 @@ Agreements on which version(s) is/are in production and whether there is a trans
 
 #### Exceptions
 
-n.a.
+None.
 
 </details>

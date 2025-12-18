@@ -20,6 +20,8 @@ The HAL standard for the use of hypermedia controls is laid down in the API Stra
 
 #### Exceptions
 
+None.
+
 
 </details>
 

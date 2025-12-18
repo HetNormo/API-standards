@@ -47,11 +47,10 @@ This enables consistent and clear behavior for error messages.
 
 #### Exceptions
 
-n.a.
+None.
 
 </details>
 
 
 05 - Errors and exceptions
-
 

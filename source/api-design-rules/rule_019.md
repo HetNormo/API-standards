@@ -20,6 +20,8 @@ The use of the '_fields' parameter for requesting individual fields is laid down
 
 #### Exceptions
 
+None.
+
 
 </details>
 
