@@ -10,12 +10,12 @@ The HTTP standard allows for a considerable amount of flexibility in the functio
 
 Each operation is described in terms of application and restrictions, including the use of request and response parameters/payloads. Also outlined are the *specific* response codes logically applicable to each operation.
 
-Additionally, each operation **should** generate several common error codes:
+Additionally, each operation **should** generate these common error codes:
 
-- **400 – Bad Request**: The request contains syntactic errors that make execution impossible.
+- **400 – Bad Request**: The request contains syntactic errors that make execution impossible. This also pertains to all types of errors in query- and/or header parameters.
 - **401 – Unauthorized**: The requester must authenticate before calling the operation.
 - **403 – Forbidden**: The requester has no rights to perform the given operation or may not execute it on the specified resource.
-- **422 – Unprocessable Content**: The request is syntactically correct but contains semantic errors/conflicts preventing execution (only applicable for those operations that receive parameters and/or payloads that require semantic validation).
+- **422 – Unprocessable Content**: The request is syntactically correct but the payload contains semantic errors and/or conflicts preventing execution (only applicable for those operations that receive payloads).
 - **500 – Internal Server Error**: The called application encounters a problem that makes it impossible to execute the requested operation.
 - **503 – Service Unavailable**: The called application is currently unavailable.
 
@@ -142,7 +142,7 @@ The operation **may** result in the following response codes:
 
 - **409 – Conflict**: The current state of the collection prevents the execution of the search query, for example, because it is locked.
 
-- **422 – Unprocessable Content**: The semantic check in this context may indicate that the request cannot be executed because it would result in an excessively large result set (e.g., querying a large collection without an explicit filter or using unrealistic filter parameters).
+- **422 – Unprocessable Content**: The semantic check in this context may indicate that the request cannot be executed because the provided filters would result in an excessively large result set (e.g., querying a large collection without any explicit filter or using unrealistic filter parameters).
 
 ##### Alternative solution
 
