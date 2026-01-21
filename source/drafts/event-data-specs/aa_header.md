@@ -7,8 +7,8 @@ layout: doc-draft
 | <!-- -->                 | <!-- -->   |
 | :-------------------     | :--------- |
 | __Requested by__         | Het Normo  |
-| __Version__              | 1.1        |
-| __Status__               | Draft    |
+| __Version__              | 1.2        |
+| __Status__               | For approval  |
 | __Publication date__     | 2025-09-22 |
 {: .header-table }
 
