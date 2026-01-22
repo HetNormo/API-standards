@@ -7,8 +7,8 @@ layout: doc
 | <!-- -->                 | <!-- -->   |
 | :-------------------     | :--------- |
 | __Requested by__         | Het Normo  |
-| __Version__              | 0.9-web    |
-| __Status__               | Concept    |
+| __Version__              | 1.0        |
+| __Status__               | Adopted    |
 | __Publication date__     | 2025-03-06 |
 {: .header-table }
 
