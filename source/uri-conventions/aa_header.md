@@ -6,8 +6,8 @@ layout: doc
 
 | <!-- -->                 | <!-- -->   |
 | :-------------------     | :--------- |
-| __Version__              | 2.0-web    |
-| __Status__               | Concept    |
+| __Version__              | 2.0        |
+| __Status__               | Adopted    |
 | __Publication date__     | 2025-02-15 |
 {: .header-table }
 
