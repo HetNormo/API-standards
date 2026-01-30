@@ -14,7 +14,7 @@ Open section for explanation, rationale and exception conditions
 
 A POST may be used for an extended or complex search. There is consensus in the market for its use. To avoid conflicts, it is recommended not to implement the POST directly on a collection in this case, but on a 'search' endpoint under that collection (i.e. `POST .../<collection-name>/search`).
 
-See [appendix E](../attachments/Appendix-E-Use-of-HTTP-operations-for-RESTful-APIs.html) for a more detailed description of the POST operation.
+See [appendix](../attachments/Use-of-HTTP-operations-for-RESTful-APIs.html) for a more detailed description of the POST operation.
 
 #### Rationale
 
