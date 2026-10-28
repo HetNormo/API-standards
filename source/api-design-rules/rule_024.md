@@ -2,7 +2,7 @@
 
 | Title    | __24 - Use of xxxOf constructs__ |
 | :----    | :---------- |
-| Strategy | The use of xxxOf (`allOf`, `anyOf`, `oneOf`) constructs in APIs should be used with caution. |
+| Strategy | A xxxOf (`allOf`, `anyOf`, oneOf) construct should use a Discriminator. |
 
 <details><summary>
 
@@ -18,7 +18,7 @@ When `anyOf` or `oneOf` are used in a schema, that schema **should** specify an 
 
 #### Rationale
 
-In the past, many code generators and applications did not handle the xxxOf constructs properly and generated incorrect code and/or import errors. In the present day, this situation has (much) improved and it might thus be worthwile to consider the use of these constructs for new APIs or the next breaking change for existing APIs. A market consultation **should** take place beforehand to check whether the market parties can handle the proposed constructs correctly.
+In the past, many code generators and applications did not handle the xxxOf constructs properly and generated incorrect code and/or import errors. Today, this situation has improved significantly, making these constructs worth considering for new APIs and for future breaking changes to existing APIs. A market consultation **should** take place beforehand to check whether the market parties can handle the proposed constructs correctly.
 
 #### Exceptions
 
