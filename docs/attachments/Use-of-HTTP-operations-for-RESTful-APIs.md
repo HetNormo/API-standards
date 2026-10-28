@@ -82,7 +82,9 @@ The operation **may** result in the following response codes:
 - **200 – Success**: The response payload contains a list (with or without pagination) of all resources matching the search filter. Each resource in this list contains only the attributes the requester is authorised to view (see also [ID 25](https://https://hetnormo.github.io/API-standards/api-design-rules/#id-25)). If no results are found, an empty list **should** be returned.
   It is permitted to limit the search results to only the information necessary for the requester to determine a subset of results, which can then be fully retrieved using GET (with ID).
 - **409 – Conflict**: The current state of the collection prevents execution of the search query, for example, because it is locked.
-- **422 – Unprocessable Content**: The semantic check in this context may indicate that the request cannot be executed because it would result in an excessively large result set (e.g., querying a large collection without an explicit filter or with unrealistic filter parameters).
+- **422 – Unprocessable Content**: The semantic check in this context **may** indicate that the request cannot be executed because it would result in an excessively large result set (e.g., querying a large collection without an explicit filter or with unrealistic filter parameters).
+
+A GET request used as a search operation **should not** return a **404 - Not Found** error when no results can be obtained. Instead, the operation **should** return a **200 - Success**, accompanied by an empty result set.
 
 In all cases, a GET request must never contain a request body!
 
@@ -99,6 +101,8 @@ A GET URL must never contain personally identifiable information (PII), meaning 
 For a GET request on a resource, this requires careful selection of the resource ID format (e.g., never use a social security number to identify a person). Ideally, a resource ID should be a UUID.
 
 When using GET as a search query, special attention should be given to the combination of query parameters. If this combination could lead to the exposure of sensitive information, POST should be used instead of GET to implement the search function.
+
+When using GET as a search query where the URL path contains one or more primary resource keys as **path parameters,** the operaton **should** return a **404 - Not Found** error **only** in case one or more of these resource keys do not exist.
 
 ------
 
