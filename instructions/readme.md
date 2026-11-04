@@ -5,11 +5,11 @@
 First, create a branch off of the develop branch called 'feature/*my_change*'.
 Update the documentation and push. Then, create a pull request and inform the team.
 
-Publications are configured in the workflow file `.github/jekyll-gh-pages.yml`. Currently it runs using the 'main' branch.  
+Publications are configured in the workflow file `.github/workflow/jekyll-gh-pages.yml`. Currently it runs using the 'main' branch.  
 **Do not edit the main or develop branch directly.**
 
-Each document has its own source, as configured in the workflow file. Adding a document means changing this file.
-All source files are concatenated using all files in sort order.
+Each document has its own source, as configured in the workflow file. Adding a document means changing that specific file.
+All source files are concatenated in alphabetic sort order into one single file in the publication.
 
 See here for configuration on Jekyll: https://jekyllrb.com/docs/configuration/default/. 
 A valuable source is also: https://docs.github.com/en/pages/quickstart (see section on Jekyll).
@@ -17,6 +17,7 @@ A valuable source is also: https://docs.github.com/en/pages/quickstart (see sect
 ### Drafts
 
 For drafts, 
+- make sure you have created a new branch
 - create a folder for the publication in `source/drafts/<publication>`,
 - create a base folder `docs/<publication>-draft`,
 - fill folders with the original data,
