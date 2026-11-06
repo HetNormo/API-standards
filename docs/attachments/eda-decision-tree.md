@@ -3,10 +3,10 @@
 ## Introduction
 
 The following decision tree helps determine whether an event should be implemented as a state transfer or a notification:
+<br/><br>
 
-<div align="center">
 <img src="./eda_decision_tree_pic.png" width="503" height="511"/>
-</div>
+<br/><br>
 
 
 Legend:
