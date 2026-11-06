@@ -38,26 +38,37 @@ Event-Driven Architecture (EDA) is a proven pattern for efficient data exchange 
 
 This specification defines principles and guidelines to standardize event-driven design within the Dutch energy sector. It was developed by the API Strategy Working Group on behalf of Het Normo (TE005), and builds on the Community of Practice Secure Architecture (CoP SA) *Vision Document on Event-Driven Architecture*.
 
-### Alignment with broader initiatives
+## Alignment with broader initiatives
 This document reflects and consolidates lessons from both energy-sector practice and public-sector initiatives:
 *	The CoP SA Vision Document (2024)[^1] identified EDA as a key pattern for the energy domain and recommended concrete guidance - which this specification supplies.
-*	The Dutch government's Notification Services Project (2022)[^2], conducted by VNG Realisatie for the Ministry of the Interior and Kingdom Relations, established standards for automated notifications within government applications and promoted event-driven working methods across public sector organizations.
+*	The Dutch government's Notification Services Project (2022)[^1], conducted by VNG Realisatie for the Ministry of the Interior and Kingdom Relations, established standards for automated notifications within government applications and promoted event-driven working methods across public sector organizations.
 
-Through collaboration with the API Knowledge Platform[^3] - a public initiative promoting cooperation among government parties working with APIs and standards - this document incorporates lessons learned from both energy sector experience and broader government implementation efforts such as the Notification Services Project.
+Through collaboration with the API Knowledge Platform[^1] - a public initiative promoting cooperation among government parties working with APIs and standards - this document incorporates lessons learned from both energy sector experience and broader government implementation efforts such as the Notification Services Project.
 
-### Principles and guidelines
+## Principles and guidelines
 This document pairs strategic principles with actionable guidelines:
 *	Principles state the core values and strategic intent behind adopting EDA.
 *	Guidelines translate those principles into concrete implementation steps and recommendations.
 Together they ensure architectural decisions are both conceptually sound and readily applied in practice.
 
-### Document objective
+## Document objective
 This specification provides a consistent, business-driven, event-centric framework for implementing EDA in the energy sector. Its principles and guidelines capture industry best practices to promote interoperable, scalable architectures that respond effectively to domain events while maintaining robustness and long-term evolvability across the sector.
 
+## Principles
+Principles establish the strategic foundation for Event-Driven Architecture (EDA). They describe the core values and architectural intent that guide design decisions, establish the motivations and expected benefits of an event-driven approach, and define the distinguishing characteristics and properties that make event-driven systems effective.
+
+**Principle format**
+Each principle follows a structured format:
+*	**ID**: Unique identifier (EDA-P-XX)
+*	**Principle**: Short, declarative statement of the principle
+*	**Description**: Context and detailed explanation of the principle
+*	**Rationale**: Why the principle matters and what benefits it provides
+*	**Implications**: Practical consequences for architecture, teams and processes
+
+**From principles to practice**
+These principles are deliberately stable, capturing architectural truths that remain valid as technologies evolve. They translate directly into actionable guidelines (section 2.2) - principles provide the why, guidelines provide the how.
 
 [^1]: Referred documents can be found in the global [document reference](../references.md).
-[^2]: Referred documents can be found in the global [document reference](../references.md).
-[^3]: Referred documents can be found in the global [document reference](../references.md).
 
 <!-- ## Design rules
 

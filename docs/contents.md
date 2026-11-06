@@ -12,7 +12,7 @@ With these guidelines, the API Strategy Working Group aims to establish a set of
 {: .draft }
 
 <span class="draftPopup">Note: this is a draft!</span>
-**[Event Data Specification](eda-principles-guidelines-draft/)** - EDA Principles & Guidelines
+**[EDA Principles & Guidelines](eda-principles-guidelines-draft/)** - initial draft
 {: .draft }
 
 ## How to read the guidelines
