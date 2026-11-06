@@ -4,12 +4,16 @@
 
 The following decision tree helps determine whether an event should be implemented as a state transfer or a notification:
 
-<img src="./eda_decision_tree_pic.png" width="600" height="600"/>
+<div align="center">
+<img src="./eda_decision_tree_pic.png" width="503" height="511"/>
+</div>
+
 
 Legend:
 
+
 | Decision criterion  | Architecture rationale |
-| ------------------- |:----------------------:|
+| ------------------- |------------------------|
 | Are there strict privacy, authorization, or data access constraints that prevent publishing full resource data?      | Notification events allow the producer to retain control over sensitive data while exposing detailed data through a protected API with proper access control. Broadcasting sensitive data may violate regulatory, contractual or policy requirements.     |
 | Is the event legally or auditably authoritative for the state of the resource?      | Events that must serve as an authoritative audit or legal record should be self-contained. In some workflows you may also publish a notification for routing while using the state event as the authoritative payload.     |
 | Does the consumer require high autonomy and minimal end to end latency?      | State Transfer eliminates runtime dependencies, enabling independent processing and the creation of local replicas of the resource state.     |
